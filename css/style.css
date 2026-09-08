@@ -1,0 +1,459 @@
+﻿    /* ---------- Base ---------- */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    color: #f5efe6;
+    font-family: Georgia, "Times New Roman", serif;
+    background: #090807;
+}
+
+
+/* ---------- Background image ---------- */
+
+.background {
+    position: fixed;
+    inset: 0;
+
+    background-image: url("../assets/background.jpg");
+    background-size: cover;
+    background-position: center;
+
+    transform: scale(1.03);
+
+    z-index: 0;
+}
+
+
+/* ---------- Candlelight ---------- */
+
+.candlelight {
+    position: fixed;
+    inset: -20%;
+
+    background:
+            radial-gradient(
+                    ellipse at 47% 58%,
+                    rgba(255, 190, 90, 0.45) 0%,
+                    rgba(255, 160, 60, 0.25) 12%,
+                    rgba(255, 130, 40, 0.10) 28%,
+                    transparent 55%
+            );
+
+    z-index: 1;
+
+    animation: candle-flicker 3s ease-in-out infinite;
+}
+
+.hero.accepted ~ .candlelight {
+    animation:
+            candle-flicker 3s ease-in-out infinite,
+            candle-swell 2.5s ease-out;
+}
+
+body:has(.hero.accepted) .candlelight {
+    animation:
+            candle-flicker 3s ease-in-out infinite,
+            candle-swell 2.5s ease-out;
+}
+
+@keyframes candle-swell {
+    0% {
+        opacity: 0.6;
+        transform: scale(0.97);
+    }
+
+    35% {
+        opacity: 1;
+        transform: scale(1.12);
+    }
+
+    100% {
+        opacity: 0.7;
+        transform: scale(1);
+    }
+}
+
+@keyframes candle-flicker {
+    0% {
+        opacity: 0.55;
+        transform: scale(0.96);
+    }
+
+    15% {
+        opacity: 0.85;
+        transform: scale(1.02);
+    }
+
+    30% {
+        opacity: 0.65;
+        transform: scale(0.98);
+    }
+
+    45% {
+        opacity: 1;
+        transform: scale(1.04);
+    }
+
+    60% {
+        opacity: 0.72;
+        transform: scale(0.99);
+    }
+
+    78% {
+        opacity: 0.92;
+        transform: scale(1.02);
+    }
+
+    100% {
+        opacity: 0.6;
+        transform: scale(0.97);
+    }
+}
+
+
+/* ---------- Dark overlay ---------- */
+
+.overlay {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.42);
+
+    z-index: 2;
+}
+
+
+/* ---------- Text ---------- */
+
+.eyebrow {
+    margin: 0 0 2rem;
+
+    font-family: Arial, sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+
+    opacity: 0.8;
+}
+
+h1 {
+    margin: 0;
+
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    font-weight: 400;
+    line-height: 1.1;
+
+    letter-spacing: -0.02em;
+
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+}
+
+.subtext {
+    margin: 2rem 0 3rem;
+
+    font-family: Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+
+    opacity: 0.8;
+}
+
+
+/* ---------- Buttons ---------- */
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.button {
+    min-width: 150px;
+
+    padding: 0.9rem 1.5rem;
+
+    border: 1px solid rgba(245, 239, 230, 0.5);
+    border-radius: 2px;
+
+    background: rgba(0, 0, 0, 0.15);
+    color: inherit;
+
+    font-family: Arial, sans-serif;
+    font-size: 0.9rem;
+
+    cursor: pointer;
+
+    transition:
+            background-color 0.3s ease,
+            color 0.3s ease,
+            transform 0.3s ease;
+}
+
+.button:hover {
+    background-color: #f5efe6;
+    color: #17120f;
+
+    transform: translateY(-2px);
+}
+
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 600px) {
+
+    .invitation {
+        padding: 2rem 1.5rem;
+    }
+
+    .eyebrow {
+        margin-bottom: 1.5rem;
+    }
+
+    .subtext {
+        margin: 1.5rem 0 2.5rem;
+    }
+
+    .buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .button {
+        width: min(100%, 280px);
+
+        padding: 1rem;
+    }
+}
+
+/* =========================
+Invitation sections
+========================= */
+.invitation {
+    position: relative;
+    z-index: 3;
+    width: min(90%, 800px);
+    margin: 0 auto;
+    text-align: center;
+}
+
+.hero,
+.details {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+}
+
+.hero {
+    min-height: 100vh;
+}
+
+.details {
+    min-height: 100vh;
+}
+
+.details h2 {
+    margin: 0;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 400;
+    line-height: 1.15;
+}
+
+.event-details {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    margin: 4rem 0 3rem;
+}
+
+.detail {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.detail-label {
+    font-family: Arial, sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.6;
+}
+
+.detail-value {
+    font-size: 1.1rem;
+}
+
+.details-text {
+    margin: 0 0 2.5rem;
+    font-family: Arial, sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    opacity: 0.8;
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .hero,
+    .details {
+        padding: 3rem 1.5rem;
+    }
+
+    .event-details {
+        flex-direction: column;
+        gap: 2rem;
+        margin: 3rem 0 2.5rem;
+        padding: 2rem 0;
+    }
+
+    .event-details::before,
+    .event-details::after {
+        left: 5%;
+        right: 5%;
+    }
+
+    .detail {
+        max-width: none;
+    }
+
+}
+/* =========================
+Event details
+========================= */
+
+.details h2 {
+    margin: 0.5rem 0 0;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+}
+
+.event-details {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    width: 100%;
+    margin: 4rem 0 3rem;
+    padding: 2.5rem 0;
+}
+
+.event-details::before,
+.event-details::after {
+    content: "";
+    position: absolute;
+    left: 15%;
+    right: 15%;
+    height: 1px;
+    background: rgba(245, 239, 230, 0.25);
+}
+
+.event-details::before {
+    top: 0;
+}
+
+.event-details::after {
+    bottom: 0;
+}
+
+.detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    max-width: 220px;
+}
+
+.detail-label {
+    font-family: Arial, sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.55;
+}
+
+.detail-value {
+    font-size: 1.05rem;
+    line-height: 1.4;
+}
+
+.details-text {
+    margin: 0 0 2.5rem;
+    font-family: Arial, sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    opacity: 0.8;
+}
+
+/* =========================
+   Yes transition
+   ========================= */
+
+.hero {
+    position: relative;
+}
+
+.hero-content,
+.yes-message {
+    transition:
+            opacity 1.5s ease,
+            transform 1.5s ease;
+}
+
+.yes-message {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 100%;
+    transform: translate(-50%, -45%) scale(0.98);
+    opacity: 0;
+    pointer-events: none;
+    transition:
+            opacity 1s ease,
+            transform 1s ease;
+}
+
+.hero.accepted .hero-content {
+    opacity: 0;
+    transform: translateY(-20px);
+    pointer-events: none;
+}
+
+.hero.accepted .yes-message {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* =========================
+   Final message
+   ========================= */
+
+.final-message {
+    margin-top: 6rem;
+    padding-bottom: 4rem;
+    text-align: center;
+}
+
+.final-message p:last-child {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    opacity: 0.75;
+}
